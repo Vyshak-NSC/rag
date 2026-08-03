@@ -1,0 +1,1 @@
+Terraclaw brute is a low tier (tier 1) beast in Alteria, unrelated to the [[Primordial Creator]] myths.

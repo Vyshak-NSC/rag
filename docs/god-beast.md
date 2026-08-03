@@ -1,0 +1,1 @@
+The first three beings created by the [[Primordial Creator]] at the onset of creation. They each hold dominion over 3 fundamental aspects of existence. [[Veltharas]] - the god beast of creation, [[Morvail]] - the god beast of destruction and [[Aelunis]] - the god beast of order

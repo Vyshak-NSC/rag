@@ -1,0 +1,1 @@
+[[Aelunis]] is the [[God Beast]] of Order. Responsible for maintaining teh balance bwetween creation and destruction of universes
