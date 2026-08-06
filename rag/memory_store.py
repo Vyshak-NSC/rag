@@ -2,8 +2,8 @@ from rag.client import gemini_client
 from rag.ingestion import stringify_list
 
 class MemoryStore:
-    def __init__(self, chroma_cleint, name, distance_threshold=0.75):
-        self.collection = chroma_cleint.get_or_create_collection(name=name)
+    def __init__(self, chroma_client, name, distance_threshold=0.75):
+        self.collection = chroma_client.get_or_create_collection(name=name)
         self.distance_threshold = distance_threshold
     
     def upsert(self, ids, texts, metadatas=None, model_name="gemini-embedding-001"):

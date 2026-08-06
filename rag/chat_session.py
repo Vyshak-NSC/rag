@@ -13,7 +13,7 @@ class ChatSession:
         self.last_historyy_context = None
     
     def _drain_if_needed(self):
-        if not len(self.transcript) <= self.turn_limit:
+        if not len(self.transcript) > self.turn_limit:
             return
 
         drain_count = int(self.turn_limit * 0.75)
@@ -30,7 +30,7 @@ class ChatSession:
             model_turn = old_transcript[i + 1]
             
             user_text = user_turn["parts"][0]["text"]
-            model_text = user_turn["parts"][0]["text"]
+            model_text = model_turn["parts"][0]["text"]
             
             exchange_text = f"User: {user_text}\nModel: {model_text}"
             exchange_id = f"exchange-{self._exchange_counter}"
