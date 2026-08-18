@@ -6,7 +6,7 @@ from pathlib import Path
 
 load_dotenv()
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 CHROMA_PATH = PROJECT_ROOT / "chroma_data"
 
 chroma_client = chromadb.PersistentClient(path=str(CHROMA_PATH))

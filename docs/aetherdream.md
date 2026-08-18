@@ -1,1 +1,0 @@
-Before the multiverse existed, there was Aetherdream. It is the singular primordial substance from which everything is made — the raw material the [[Primordial Creator]] used to construct existence itself.

@@ -70,3 +70,25 @@ class MemoryStore:
                 seen_ids.add(id)
         
         return context
+    
+    def search(self, query, n_results=3):
+        query_resp = gemini_client.models.embed_content(
+            model="gemini-embedding-001",
+            contents=[query],
+        )
+        
+        query_embedding = query_resp.embeddings[0].values
+        
+        results = self.collection.query(
+            query_embeddings=[query_embedding],
+            n_results=n_results,
+            include=["documents","metadatas","distances"]
+        )
+        
+        relevant = []
+        for id, doc, meta, dist in zip(results['ids'][0], results['documents'][0], results['metadatas'][0], results['distances'][0]):
+            if dist <= self.distance_threshold:
+                relevant.append({"id":id, "doc":doc, "meta":meta})
+        
+        return relevant
+            

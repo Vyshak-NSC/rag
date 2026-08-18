@@ -45,9 +45,9 @@ def retrieve_context(query, collection_name, n_results=2):
     )
     # sample format of result
     # results = {
-    #     "ids":       [["aelunis", "god-beast"]],
-    #     "documents": [["[[Aelunis]] is the [[God Beast]] of Order...", "The first three beings created..."]],
-    #     "metadatas": [[{"links": "aelunis,god-beast"}, {"links": "primordial-creator,veltharas,morvail,aelunis"}]],
+    #     "ids":       [["filename1", "filename2"]],
+    #     "documents": [["file content of file 1", "file content of file 2"]],
+    #     "metadatas": [[{"links": "comma separated links in file 1"}, {"links": "coma separated links in file2"}]],
     #     "distances": [[0.42, 0.69]]
     # }
     
@@ -63,8 +63,8 @@ def retrieve_context(query, collection_name, n_results=2):
             })
     # relevant data format sample
     # relevant = [
-    #     {"id": "aelunis",   "doc": "[[Aelunis]] is the [[God Beast]] of Order...", "meta": {"links": "aelunis,god-beast"}},
-    #     {"id": "god-beast", "doc": "The first three beings created...",             "meta": {"links": "primordial-creator,veltharas,morvail,aelunis"}}
+    #     {"id": "filename1",   "doc": "<filename> needs to be present in name to let vector find connectio ", "meta": {"links": "aelunis,god-beast"}},
+    #     {"id": "filename-2", "doc": "content with links to another file as [[filename]]",             "meta": {"links": "primordial-creator,veltharas,morvail,aelunis"}}
     # ]
     
     # add to set to prevent link repeatition
@@ -146,10 +146,11 @@ while True:
     transcript.append(user_turn)
     
     response = client.models.generate_content(
-        model="gemini-3.1-flash-lite",
+        model="gemini-3.5-flash-lite",
         contents=transcript,
         config={
             "system_instruction": ("Keep responses concise and direct. Use a conversational, natural, and human-like tone, but avoid unnecessary fluff or robotic filler.\n\n"
+                                   "if answer is not verified as accurate and fact, do ot hallucinate answer as compensation. say that you dont know\n\n"
                                    f"Relevant context for thsi turn:\n{context}"
             )
         }

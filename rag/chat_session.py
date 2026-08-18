@@ -1,4 +1,6 @@
 from rag.client import gemini_client
+from rag.retrieval_agent import run_retrieval_agent
+
 
 class ChatSession:
     def __init__(self, memory_store, history_store, turn_limit=40, model="gemini-3.1-flash-lite"):
@@ -43,7 +45,7 @@ class ChatSession:
         self.history_store.upsert(ids=ids, texts=texts, metadatas=None)
     
     def send(self, user_inp):
-        memory_context  = self.memory_store.retrieve_content(user_inp)
+        memory_context  = run_retrieval_agent(user_inp, self.memory_store)
         history_context = self.history_store.retrieve_content(user_inp)
         
         self.last_memory_context = memory_context
@@ -57,6 +59,7 @@ class ChatSession:
             config={
                 "system_instruction":(
                     "Keep responses concise and direct. Use a conversational, natural, and human-like tone, but avoid unnecessary fluff or robotic filler.\n\n"
+                    "Search relevant data in the rag sustem, only if not availabel wil you search in the web."
                     f"Relevant knowledge for this chunk:\n{memory_context}\n\n"
                     f"Relevant past conversation history for this chunk:\n{history_context}\n\n"
                 )

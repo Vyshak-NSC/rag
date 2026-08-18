@@ -12,6 +12,7 @@ def load_md_files(path):
         with open(full_path, 'r', encoding='utf-8') as f:
             content = f.read()
             links = re.findall(r'\[\[(.*?)\]\]', content)
+            links = [link.split("|")[0].strip() for link in links]
             
             res = { "filename" : file.removesuffix('.md'), "text" : content, "links":links}
             data.append(res)

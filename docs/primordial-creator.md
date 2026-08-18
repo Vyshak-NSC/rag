@@ -1,1 +1,0 @@
-The Primordial Creator is the first and only being to exist without origin. They shaped [[Aetherdream]] into the structure of the multiverse and created three [[God Beast]]s to govern its ongoing cycle.
